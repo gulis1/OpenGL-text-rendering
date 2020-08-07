@@ -345,3 +345,4 @@ TextRender.vcxproj.filters
 TextRender.vcxproj.user
 TextRender.sln
 stb_image.h
+glew.c
