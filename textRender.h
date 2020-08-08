@@ -23,7 +23,7 @@ typedef map<int, tChar> tFontData;
 
 class textRenderer {
 	public:
-		textRenderer(const GLchar* fontBitmapFileName, const string fontDataFileName, const string vertexShaderFile, const string fragmentShaderFile);
+		textRenderer(const GLchar* fontBitmapFileName, const string fontDataFileName);
 		void renderText(const string text, GLfloat startX, GLfloat startY, GLfloat scale, GLfloat r, GLfloat g, GLfloat b);
 		~textRenderer();
 

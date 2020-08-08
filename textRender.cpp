@@ -9,30 +9,35 @@ void textRenderer::getFontData(string fileName) {
 
 	file.open(fileName);
 	int id;
+	tChar character;
 
-	if (file.is_open())
 
-		for (int i = 32; i <= 122; i++) {
-			tChar character;
+
+	while (file.is_open()) {
+		file >> id;
+
+		if (id == -1)
+			break;
+
+		file >> character.x;
+		file >> character.y;
+		file >> character.width;
+		file >> character.height;
+		file >> character.xoffset;
+		file >> character.yoffset;
+		file >> character.xadvance;
+
+
+		file.ignore(1);
+
+		fontData[id] = character;
+	}
 			
-			file >> id;
-			file >> character.x;
-			file >> character.y;
-			file >> character.width;
-			file >> character.height;
-			file >> character.xoffset;
-			file >> character.yoffset;
-			file >> character.xadvance;
-
-
-			file.ignore(1);
-
-			fontData[id] = character;
-
-		}
-
-	else
+	if (!file.is_open())
 		cout << "ERROR LOADING FONT DATA" << endl;
+	
+	else
+		file.close();
 
 }
 
@@ -78,7 +83,7 @@ void textRenderer::createTexture(const GLchar* fileName) {
 	
 }
 
-textRenderer::textRenderer(const GLchar* fontBitmapFileName, const string fontDataFileName, const string vertexShaderFile, const string fragmentShaderFile) {
+textRenderer::textRenderer(const GLchar* fontBitmapFileName, const string fontDataFileName) {
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -86,7 +91,7 @@ textRenderer::textRenderer(const GLchar* fontBitmapFileName, const string fontDa
 
 	createTexture(fontBitmapFileName);
 	getFontData(fontDataFileName);
-	program = new shaderProgram(vertexShaderFile, fragmentShaderFile);
+	program = new shaderProgram("vertex.glsl", "fragment.glsl");
 	createBuffers();
 }
 
@@ -106,6 +111,7 @@ void textRenderer::renderChar(const tChar &c, GLfloat startX, GLfloat startY, GL
 	GLfloat w2 = w * scale;
 	GLfloat h2 = h * scale;
 
+	
 
 	GLfloat vertices[] = {
 		// positions						 // colors				// texture coords

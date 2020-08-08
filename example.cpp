@@ -32,7 +32,7 @@ int main()
 
 	glewInit();
 
-	textRenderer renderer("font.png", "fontData.txt", "vertex.glsl", "fragment.glsl");
+	textRenderer renderer("arial.png", "arial.txt");
 
 	string text;
 	int i = 1;
@@ -44,7 +44,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		
 		text = "Hello world! \n\nFrames: " + to_string(i);
-		renderer.renderText(text, -0.5f, 0.0f, 0.7f, 1.0f, 1.0f, 1.0f);
+		renderer.renderText(text, -0.5f, 0.0f, 3.5f, 1.0f, 1.0f, 1.0f);
 			
 		glfwSwapBuffers(window);
 		glfwPollEvents();
