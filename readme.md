@@ -1,6 +1,6 @@
 # OpenGL text rendering
 
-_Simple program I made to render text in openGL_
+_Simple program I made to render text in openGL._
 
 ### Pre-requirements 📋
 
