@@ -98,9 +98,7 @@ textRenderer::textRenderer(const GLchar* fontBitmapFileName, const string fontDa
 
 void textRenderer::renderChar(const tChar &c, GLfloat startX, GLfloat startY, GLfloat scale, GLfloat r, GLfloat g, GLfloat b) {
 
-	
 	GLfloat x, y, w, h;
-
 
 	x = c.x / GLfloat(width);
 	y = 1 - c.y / GLfloat(height);
@@ -122,21 +120,12 @@ void textRenderer::renderChar(const tChar &c, GLfloat startX, GLfloat startY, GL
 	};
 
 
-	GLuint indices[] = {  // note that we start from 0!
-	0, 1, 3,   // first triangle
-	3, 1, 2
-	};
+	GLuint indices[] = { 0, 1, 3,   3, 1, 2 };
 
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-
+	
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glUseProgram(program->id);
-
-	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
@@ -145,6 +134,13 @@ void textRenderer::renderText(const string text, GLfloat startX, GLfloat startY,
 	GLfloat initialX = startX;
 
 	tChar c;
+
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glUseProgram(program->id);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
 	for (const GLchar x : text) {
 
@@ -168,6 +164,11 @@ void textRenderer::renderText(const string text, GLfloat startX, GLfloat startY,
 		}
 			
 	}
+
+	glUseProgram(0);
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 textRenderer::~textRenderer() {
