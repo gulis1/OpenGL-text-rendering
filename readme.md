@@ -4,7 +4,6 @@ _Simple program I made to render text in openGL._
 
 ### Pre-requirements 📋
 
-* [GLFW](https://www.glfw.org/)
 * [GLEW](http://glew.sourceforge.net/)
 * [stb](https://github.com/nothings/stb)
 
