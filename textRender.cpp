@@ -125,8 +125,8 @@ void textRenderer::renderChar(const tChar &c, GLfloat startX, GLfloat startY, GL
 	
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	
 }
 
 void textRenderer::renderText(const string text, GLfloat startX, GLfloat startY, GLfloat scale, GLfloat r, GLfloat g, GLfloat b) {
@@ -164,7 +164,7 @@ void textRenderer::renderText(const string text, GLfloat startX, GLfloat startY,
 		}
 			
 	}
-
+	
 	glUseProgram(0);
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);

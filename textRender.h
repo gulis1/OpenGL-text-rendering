@@ -1,6 +1,5 @@
 #pragma once
 #include<glew.h>
-#include <glfw3.h>
 #include <map>
 #include <fstream>
 #include "shaderProgram.h"

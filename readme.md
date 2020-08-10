@@ -4,7 +4,6 @@ _Simple program I made to render text in openGL._
 
 ### Pre-requirements 📋
 
-* [GLFW](https://www.glfw.org/)
 * [GLEW](http://glew.sourceforge.net/)
 * [stb](https://github.com/nothings/stb)
 
@@ -12,6 +11,9 @@ _Simple program I made to render text in openGL._
 ## Using 📦
 
 Once everything is properly installed, create a **textRenderer** object, and call the **renderText** method.
+
+An example file is provided (It used GLFW to create a window and its openGL context)
+
 
 ## Expresiones de Gratitud 🎁
 

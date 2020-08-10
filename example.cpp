@@ -1,3 +1,5 @@
+// GLFW is used here to create the window and its openGL context.
+
 #include<glew.h>
 #include <glfw3.h>
 #include<string>
@@ -11,7 +13,7 @@ const int LENGTH = 500;
 int main()
 {
 	
-	/* Initialize the library */
+
 	if (!glfwInit())
 		return -1;
 	
